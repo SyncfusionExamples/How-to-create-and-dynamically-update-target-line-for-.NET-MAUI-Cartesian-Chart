@@ -43,8 +43,8 @@ Learn step-by-step instructions and gain insights to create and dynamically upda
     </chart:SfCartesianChart.XAxes>
 
     <chart:SfCartesianChart.YAxes>
-        <chart:NumericalAxis x:Name="Y_Axis" Minimum="0" Maximum="20000" Interval="5000" ShowMajorGridLines="False">
-            ......
+        <chart:NumericalAxis x:Name="Y_Axis" Minimum="0" Maximum="20000" Interval="5000" ShowMajorGridLines="False" PlotOffsetEnd="30">
+            .....
         </chart:NumericalAxis>
     </chart:SfCartesianChart.YAxes>
 
@@ -132,5 +132,6 @@ internal class ViewModel : INotifyPropertyChanged
 
 **Output:**
 
-![TargetLineCustomization1](https://github.com/user-attachments/assets/f380a273-e02a-4391-89d1-dd8658c95b01)
+![DynamicTargetLine](https://github.com/user-attachments/assets/737beb67-861f-44f6-815f-3f6dde45d8fc)
+
 
