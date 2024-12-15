@@ -18,6 +18,7 @@ namespace TargetLineSample
             {
                 if (string.IsNullOrWhiteSpace(entry.Text))
                 {
+                    viewModel.Y1 = double.MinValue;
                     entry.Text = string.Empty;
                 }
                 else

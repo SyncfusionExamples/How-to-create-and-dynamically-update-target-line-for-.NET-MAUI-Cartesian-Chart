@@ -26,7 +26,7 @@
             </chart:SfCartesianChart.XAxes>
 
             <chart:SfCartesianChart.YAxes>
-                <chart:NumericalAxis x:Name="Y_Axis" Minimum="0" Maximum="20000" Interval="5000" ShowMajorGridLines="False">
+                <chart:NumericalAxis x:Name="Y_Axis" Minimum="0" Maximum="20000" Interval="5000" ShowMajorGridLines="False" PlotOffsetEnd="30">
                     <chart:NumericalAxis.Title>
                         <chart:ChartAxisTitle Text="Revenue"/>
                     </chart:NumericalAxis.Title>
