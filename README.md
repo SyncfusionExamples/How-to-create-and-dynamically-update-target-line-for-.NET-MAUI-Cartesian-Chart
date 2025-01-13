@@ -63,19 +63,14 @@ Learn step-by-step instructions and gain insights to create and dynamically upda
 
  ```xml
 <chart:SfCartesianChart Grid.Column="0">
-
+.....
     <chart:SfCartesianChart.Annotations>
         <chart:HorizontalLineAnnotation Y1="{Binding Y1}"
-                                Stroke="Black"
-                                StrokeWidth="2"
-                                StrokeDashArray="5,2,2"
-                                Text="Target">
-                <chart:HorizontalLineAnnotation.LabelStyle>
-                    <chart:ChartAnnotationLabelStyle TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Start"/>
-                </chart:HorizontalLineAnnotation.LabelStyle>
+                                .....>
+                ......
             </chart:HorizontalLineAnnotation>
     </chart:SfCartesianChart.Annotations>
-
+.....
 </chart:SfCartesianChart> 
  ```
  
@@ -164,35 +159,14 @@ private void Entry_TextChanged(object sender, TextChangedEventArgs e)
 } 
  ```
 
-**Step 5:** This XAML code demonstrates a [SfCartesianChart](https://help.syncfusion.com/maui/cartesian-charts/getting-started) with dynamic updates to a horizontal target line annotation, bound to a ViewModel property. The chart includes X and Y axes, a column series, and customizable annotation styling.
+**Step 5:** This code defines a [HorizontalLineAnnotation](https://help.syncfusion.com/maui/cartesian-charts/annotation#vertical-and-horizontal-line-annotations) in a [SfCartesianChart](https://help.syncfusion.com/maui/cartesian-charts/getting-started), marking a specific Y-axis value (Y1) with a styled dashed line and label. The label's appearance is customized using a [ChartAnnotationLabelStyle](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartAnnotationLabelStyle.html) for text color, size, font attributes, and alignment.
 
 **XAML**
   
  ```xml
-<Grid>
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"></ColumnDefinition>
-        <ColumnDefinition Width="200"></ColumnDefinition>
-    </Grid.ColumnDefinitions>
-
-    <Grid.BindingContext>
-        <local:ViewModel x:Name="viewModel"/>
-    </Grid.BindingContext>
-
-    <chart:SfCartesianChart Grid.Column="0">
-
-        <chart:SfCartesianChart.XAxes>
-            <chart:CategoryAxis ShowMajorGridLines="False">
-                .....
-            </chart:CategoryAxis>
-        </chart:SfCartesianChart.XAxes>
-
-        <chart:SfCartesianChart.YAxes>
-            <chart:NumericalAxis x:Name="Y_Axis" Minimum="0" Maximum="20000" Interval="5000" ShowMajorGridLines="False" PlotOffsetEnd="30">
-                .....
-            </chart:NumericalAxis>
-        </chart:SfCartesianChart.YAxes>
-
+<chart:SfCartesianChart Grid.Column="0">
+        ......
+        
         <chart:SfCartesianChart.Annotations>
             <chart:HorizontalLineAnnotation Y1="{Binding Y1}"
                                             Stroke="Black"
@@ -205,14 +179,8 @@ private void Entry_TextChanged(object sender, TextChangedEventArgs e)
             </chart:HorizontalLineAnnotation>
         </chart:SfCartesianChart.Annotations>
 
-        <chart:ColumnSeries ItemsSource="{Binding Data}"
-                            XBindingPath="Months"
-                            YBindingPath="Revenue"
-                            PaletteBrushes="{Binding CustomBrushes}"
-                            Opacity="0.7"/>
-
+        .....
     </chart:SfCartesianChart>
-</Grid> 
  ```
 
 **Output:**
