@@ -128,7 +128,8 @@ internal class ViewModel : INotifyPropertyChanged
     
 </VerticalStackLayout>
  ```
-This code handles the TextChanged event for a TextBox, dynamically updating the Y1 property in the ViewModel while ensuring the value stays within the axis’s maximum and minimum bounds. It also manages text formatting and prevents recursive event triggers.
+
+This code handles the TextChanged event for an Entry, validating input to ensure it is a numeric value within the maximum axis range. If invalid input is detected, the text reverts to the previous value to maintain consistency.
 
 **C#**
  
