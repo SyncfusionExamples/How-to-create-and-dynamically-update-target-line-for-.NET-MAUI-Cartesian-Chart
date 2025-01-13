@@ -66,7 +66,10 @@ Learn step-by-step instructions and gain insights to create and dynamically upda
 .....
     <chart:SfCartesianChart.Annotations>
         <chart:HorizontalLineAnnotation Y1="{Binding Y1}"
-                                .....>
+                                Stroke="Black"
+                                StrokeWidth="2"
+                                StrokeDashArray="5,2,2"
+                                Text="Target">
                 ......
             </chart:HorizontalLineAnnotation>
     </chart:SfCartesianChart.Annotations>
