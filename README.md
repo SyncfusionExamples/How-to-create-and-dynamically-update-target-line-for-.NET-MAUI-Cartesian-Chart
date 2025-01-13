@@ -1,5 +1,5 @@
 # How to create and dynamically update target line for .NET MAUI Cartesian Chart
-This article provides a detailed walkthrough on how to add arrows to the axis using Annotations in [.NET MAUI Cartesian Chart](https://www.syncfusion.com/maui-controls/maui-cartesian-charts).
+This article provides a detailed walkthrough on  how to add and dynamically update a target line using annotations in [.NET MAUI Cartesian Chart](https://www.syncfusion.com/maui-controls/maui-cartesian-charts).
 
 The [SfCartesianChart](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html) includes support for [Annotations](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_Annotations), enabling the addition of various types of annotations to enhance chart visualization. Using [HorizontalLineAnnotation](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.HorizontalLineAnnotation.html), you can create and dynamically adjust the target line.
 
@@ -115,7 +115,7 @@ internal class ViewModel : INotifyPropertyChanged
 } 
  ```
  
-**Step 4:** The second column of the grid layout contains a VerticalStackLayout with a Slider and an Entry box, allowing the user to change the annotation value dynamically.
+**Step 4:** The second column of the grid layout contains a VerticalStackLayout with a Slider and an Entry box, allowing the user to change the annotation value dynamically. The Entry_TextChanged event validates input, ensuring values stay within the bounds defined by the Y_Axis.
 
 **XAML**
  
@@ -129,6 +129,96 @@ internal class ViewModel : INotifyPropertyChanged
 </VerticalStackLayout>
  ```
  
+**C#**
+ 
+ ```csharp
+private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+{
+    if(Y_Axis == null) return;
+    var maxValue = Y_Axis.Maximum;
+    
+    if (sender is Entry entry)
+    {
+        if (string.IsNullOrWhiteSpace(entry.Text))
+        {
+            viewModel.Y1 = double.MinValue;
+            entry.Text = string.Empty;
+        }
+        else
+        {
+            if (double.TryParse(e.NewTextValue, out double newValue))
+            {
+                if (newValue > maxValue)
+                {
+                    entry.Text = e.OldTextValue;
+                }
+            }
+            else
+            {
+                entry.Text = e.OldTextValue;
+            }
+        }
+    }
+} 
+ ```
+
+**Step 5:** This XAML code defines a grid layout with a [SfCartesianChart](https://help.syncfusion.com/maui/cartesian-charts/getting-started) for displaying revenue data and a vertical control panel for adjusting a dynamic target line. The chart includes a horizontal annotation line bound to Y1, adjustable via an Entry and a Slider in the adjacent VerticalStackLayout.
+
+**XAML**
+  
+ ```xml
+<Grid>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="200"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+
+    <Grid.BindingContext>
+        <local:ViewModel x:Name="viewModel"/>
+    </Grid.BindingContext>
+
+    <chart:SfCartesianChart Grid.Column="0">
+
+        <chart:SfCartesianChart.XAxes>
+            <chart:CategoryAxis ShowMajorGridLines="False">
+                .....
+            </chart:CategoryAxis>
+        </chart:SfCartesianChart.XAxes>
+
+        <chart:SfCartesianChart.YAxes>
+            <chart:NumericalAxis x:Name="Y_Axis" Minimum="0" Maximum="20000" Interval="5000" ShowMajorGridLines="False" PlotOffsetEnd="30">
+                .....
+            </chart:NumericalAxis>
+        </chart:SfCartesianChart.YAxes>
+
+        <chart:SfCartesianChart.Annotations>
+            <chart:HorizontalLineAnnotation Y1="{Binding Y1}"
+                                            Stroke="Black"
+                                            StrokeWidth="2"
+                                            StrokeDashArray="5,2,2"
+                                            Text="Target">
+                <chart:HorizontalLineAnnotation.LabelStyle>
+                    <chart:ChartAnnotationLabelStyle TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Start"/>
+                </chart:HorizontalLineAnnotation.LabelStyle>
+            </chart:HorizontalLineAnnotation>
+        </chart:SfCartesianChart.Annotations>
+
+        <chart:ColumnSeries ItemsSource="{Binding Data}"
+                            XBindingPath="Months"
+                            YBindingPath="Revenue"
+                            PaletteBrushes="{Binding CustomBrushes}"
+                            Opacity="0.7"/>
+
+    </chart:SfCartesianChart>
+
+    <VerticalStackLayout Spacing="5" Grid.Column="1" Padding="10">
+        <Label Text="Adjust Target Line" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center"/>
+        <Entry Text="{Binding Y1}" Keyboard="Numeric" TextChanged="Entry_TextChanged"/>
+        <Slider Minimum="{Binding Minimum, Source={x:Reference Y_Axis}}" Maximum="{Binding Maximum, Source={x:Reference Y_Axis}}" Value="{Binding Y1}"/>
+    </VerticalStackLayout>
+</Grid> 
+ ```
+ 
 
 **Output:**
 
@@ -140,5 +230,5 @@ Path too long exception
 
 If you are facing a path too long exception when building this example project, close Visual Studio and rename the repository to a shorter name before building the project.
 
-For more details, refer to the KB on [how to create and dynamically update target line for .NET MAUI Cartesian Chart?](https://support.syncfusion.com/agent/kb/18517).
+For more details, refer to the KB on [how to create and dynamically update target line for .NET MAUI Cartesian Chart](https://support.syncfusion.com/agent/kb/18517).
 
