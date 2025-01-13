@@ -14,7 +14,7 @@ The Horizontal Line Annotation includes following property:
 
 Learn step-by-step instructions and gain insights to create and dynamically update the target line.
 
-**Step 1:** The layout is created using a Grid with two columns.
+**Step 1:** The layout is created using a grid with two columns.
 
 **XAML**
  
@@ -29,7 +29,7 @@ Learn step-by-step instructions and gain insights to create and dynamically upda
 </Grid> 
  ```
  
-**Step 2:** In first column of grid layout, initialize the [SfCartesianChart](https://help.syncfusion.com/maui/cartesian-charts/getting-started) and add the axes and series to the [SfCartesianChart](https://help.syncfusion.com/maui/cartesian-charts/getting-started) as shown below.
+**Step 2:** In the first column of the grid layout, initialize the [SfCartesianChart](https://help.syncfusion.com/maui/cartesian-charts/getting-started) and add the axes and series as shown below.
 
 **XAML**
 
@@ -57,10 +57,10 @@ Learn step-by-step instructions and gain insights to create and dynamically upda
 </chart:SfCartesianChart> 
  ```
  
-**Step 3:** The [HorizontalLineAnnotation](https://help.syncfusion.com/maui/cartesian-charts/annotation#vertical-and-horizontal-line-annotations) is initialized within the [Annotations](https://help.syncfusion.com/maui/cartesian-charts/annotation) collection of the [SfCartesianChart](https://help.syncfusion.com/maui/cartesian-charts/getting-started) to mark a dynamic target value on the Y-axis. The Y1 value is data-bound, enabling the target line to update dynamically based on the ViewModel.
+**Step 3:** The [HorizontalLineAnnotation](https://help.syncfusion.com/maui/cartesian-charts/annotation#vertical-and-horizontal-line-annotations) is initialized within the [Annotations](https://help.syncfusion.com/maui/cartesian-charts/annotation) collection of the [SfCartesianChart](https://help.syncfusion.com/maui/cartesian-charts/getting-started) to mark a dynamic target value on the Y-axis. The Y1 property is data-bound to the ViewModel, allowing the target line to adjust dynamically when the value changes.
 
 **XAML**
- 
+
  ```xml
 <chart:SfCartesianChart Grid.Column="0">
 
@@ -218,7 +218,6 @@ private void Entry_TextChanged(object sender, TextChangedEventArgs e)
     </VerticalStackLayout>
 </Grid> 
  ```
- 
 
 **Output:**
 
