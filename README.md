@@ -162,7 +162,7 @@ private void Entry_TextChanged(object sender, TextChangedEventArgs e)
 } 
  ```
 
-**Step 5:** This XAML code defines a grid layout with a [SfCartesianChart](https://help.syncfusion.com/maui/cartesian-charts/getting-started) for displaying revenue data and a vertical control panel for adjusting a dynamic target line. The chart includes a horizontal annotation line bound to Y1, adjustable via an Entry and a Slider in the adjacent VerticalStackLayout.
+**Step 5:** This XAML code demonstrates a [SfCartesianChart](https://help.syncfusion.com/maui/cartesian-charts/getting-started) with dynamic updates to a horizontal target line annotation, bound to a ViewModel property. The chart includes X and Y axes, a column series, and customizable annotation styling.
 
 **XAML**
   
@@ -210,12 +210,6 @@ private void Entry_TextChanged(object sender, TextChangedEventArgs e)
                             Opacity="0.7"/>
 
     </chart:SfCartesianChart>
-
-    <VerticalStackLayout Spacing="5" Grid.Column="1" Padding="10">
-        <Label Text="Adjust Target Line" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center"/>
-        <Entry Text="{Binding Y1}" Keyboard="Numeric" TextChanged="Entry_TextChanged"/>
-        <Slider Minimum="{Binding Minimum, Source={x:Reference Y_Axis}}" Maximum="{Binding Maximum, Source={x:Reference Y_Axis}}" Value="{Binding Y1}"/>
-    </VerticalStackLayout>
 </Grid> 
  ```
 
