@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:local="clr-namespace:TargetLineSample"
+             x:Class="TargetLineSample.MainPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.BindingContext>
+            <local:ViewModel x:Name="viewModel"/>
+        </Grid.BindingContext>
+
+        <chart:SfCartesianChart Grid.Column="0">
+
+            <chart:SfCartesianChart.XAxes>
+                <chart:CategoryAxis ShowMajorGridLines="False">
+                    <chart:CategoryAxis.Title>
+                        <chart:ChartAxisTitle Text="Months"/>
+                    </chart:CategoryAxis.Title>
+                </chart:CategoryAxis>
+            </chart:SfCartesianChart.XAxes>
+
+            <chart:SfCartesianChart.YAxes>
+                <chart:NumericalAxis x:Name="Y_Axis" Minimum="0" Maximum="20000" Interval="5000" ShowMajorGridLines="False" PlotOffsetEnd="30">
+                    <chart:NumericalAxis.Title>
+                        <chart:ChartAxisTitle Text="Revenue"/>
+                    </chart:NumericalAxis.Title>
+                    <chart:NumericalAxis.LabelStyle>
+                        <chart:ChartAxisLabelStyle LabelFormat="'$'0"/>
+                    </chart:NumericalAxis.LabelStyle>
+                </chart:NumericalAxis>
+            </chart:SfCartesianChart.YAxes>
+
+            <chart:SfCartesianChart.Annotations>
+                <chart:HorizontalLineAnnotation Y1="{Binding Y1}"
+                                                Stroke="Black"
+                                                StrokeWidth="2"
+                                                StrokeDashArray="5,2,2"
+                                                Text="Target">
+                    <chart:HorizontalLineAnnotation.LabelStyle>
+                        <chart:ChartAnnotationLabelStyle TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Start"/>
+                    </chart:HorizontalLineAnnotation.LabelStyle>
+                </chart:HorizontalLineAnnotation>
+            </chart:SfCartesianChart.Annotations>
+
+            <chart:ColumnSeries ItemsSource="{Binding Data}"
+                                XBindingPath="Months"
+                                YBindingPath="Revenue"
+                                PaletteBrushes="{Binding CustomBrushes}"
+                                Opacity="0.7"/>
+
+        </chart:SfCartesianChart>
+
+        <VerticalStackLayout Spacing="5" Grid.Column="1" Padding="10">
+            <Label Text="Adjust Target Line" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Entry Text="{Binding Y1}" Keyboard="Numeric" TextChanged="Entry_TextChanged"/>
+            <Slider Minimum="{Binding Minimum, Source={x:Reference Y_Axis}}" Maximum="{Binding Maximum, Source={x:Reference Y_Axis}}" Value="{Binding Y1}"/>
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>
